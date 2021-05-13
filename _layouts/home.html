@@ -1,0 +1,21 @@
+---
+layout: default
+---
+<div class="row">
+    <div class="col">
+        <div class="jumbotron">
+            <div class="row">
+                {%- if site.logo_src -%}
+                    <div class="col text-right">
+                        <img src="{{ site.logo_src }}" />
+                    </div>
+                {%- endif -%}
+                <div class="col text-left">
+                    {{ content }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include home_links.html %}

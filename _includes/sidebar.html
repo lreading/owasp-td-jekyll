@@ -1,76 +1,55 @@
 <!-- Graciously derived from https://www.codeply.com/go/3e0RAjccRO/bootstrap-4-collapsing-sidebar-menu -->
 <div id="sidebar-container" class="sidebar-expanded d-none d-md-block">
     <ul class="list-group">
-        <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
-            <small>MAIN MENU</small>
-        </li>
-        <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-start align-items-center">
-                <span class="fa fa-home fa-fw mr-3"></span>
-                <span class="menu-collapsed">Dashboard</span>
-                <span class="submenu-icon ml-auto submenu-expand fa fa-caret-down"></span>
-                <span class="submenu-icon ml-auto submenu-collapse fa fa-caret-up"></span>
-            </div>
-        </a>
-        <div id='submenu1' class="collapse sidebar-submenu">
-            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                <span class="menu-collapsed">Chahgag</span>
+
+        {%- for category in site.nav.categories -%}
+            <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+                <small>{{ category.name | upcase }}</small>
+            </li>
+            {%- for group in category.groups -%}
+                {%- assign pages = site.pages | where_exp: "page", "page.group == group.name" | sort: "nav_order" -%}
+                {%- capture submenuId -%}submenu-{{ category.name | replace: " ", "_" }}-{{ group.name | replace: " ", "_" }}-{{ forloop.index }}{%- endcapture -%}
+                {%- assign activeCount = pages | where_exp: "groupPage", "groupPage.url == page.url" | size -%}
+                
+                
+                <!-- TODO: Catpure groupActive and linkActive to apply classes and data props -->
+                {%- if pages.size == 1 -%}
+                    <a href="{{ pages | map: 'url' | first | relative_url }}"
+                    class="bg-dark list-group-item list-group-item-action {% if activeCount > 0 %} active{%- endif -%}">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="{{ group.fa_class }} fa-fw mr-3"></span>
+                            <span class="menu-collapsed">{{ group.name }}</span>
+                        </div>
+                    </a>
+                {%- else -%}
+                    <a href="#{{ submenuId }}"
+                        data-toggle="collapse"
+                        aria-expanded="{%- if activeCount > 0 -%}true{%- else -%}false{%- endif -%}"
+                        class="bg-dark list-group-item list-group-item-action grou-nav flex-column align-items-start {% if activeCount > 0 %} active{%- endif -%}">
+                        <div class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="{{ group.fa_class }} fa-fw mr-3"></span>
+                            <span class="menu-collapsed">{{ group.name }}</span>
+                            <span class="submenu-icon ml-auto submenu-expand fa fa-caret-down"></span>
+                            <span class="submenu-icon ml-auto submenu-collapse fa fa-caret-up"></span>
+                        </div>
+                    </a>
+                    <div id='{{ submenuId }}' class="{%- if activeCount == 0 -%}collapse{%- endif %} sidebar-submenu">
+                        {%- for navPage in pages -%}
+                            <a href="{{ navPage.url | relative_url }}"
+                                class="list-group-item list-group-item-action bg-dark text-white {% if page.url == navPage.url %} active{%- endif -%}">
+                                <span class="menu-collapsed">{{ navPage.title }}</span>
+                            </a>
+                        {%- endfor -%}
+                    </div>
+                {%- endif -%}
+            {%- endfor -%}
+        {%- endfor -%}
+        
+            <a href="#top" data-toggle="sidebar-colapse" class="bg-dark list-group-item list-group-item-action d-flex align-items-center">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span id="collapse-icon" class="fa fa-angle-left fa-2x mr-3"></span>
+                    <span id="collapse-text" class="menu-collapsed">Collapse</span>
+                </div>
             </a>
-            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                <span class="menu-collapsed">Reports</span>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                <span class="menu-collapsed">Tables</span>
-            </a>
-        </div>
-        <a href="#submenu2" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-start align-items-center">
-                <span class="fa fa-user fa-fw mr-3"></span>
-                <span class="menu-collapsed">Profile</span>
-                <span class="submenu-icon ml-auto"></span>
-            </div>
-        </a>
-        <div id='submenu2' class="collapse sidebar-submenu">
-            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                <span class="menu-collapsed">Settings</span>
-            </a>
-            <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                <span class="menu-collapsed">Password</span>
-            </a>
-        </div>
-        <a href="#" class="bg-dark list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-start align-items-center">
-                <span class="fa fa-tasks fa-fw mr-3"></span>
-                <span class="menu-collapsed">Tasks</span>
-            </div>
-        </a>
-        <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
-            <small>OPTIONS</small>
-        </li>
-        <a href="#" class="bg-dark list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-start align-items-center">
-                <span class="fa fa-calendar fa-fw mr-3"></span>
-                <span class="menu-collapsed">Calendar</span>
-            </div>
-        </a>
-        <a href="#" class="bg-dark list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-start align-items-center">
-                <span class="fa fa-envelope-o fa-fw mr-3"></span>
-                <span class="menu-collapsed">Messages <span class="badge badge-pill badge-primary ml-2">5</span></span>
-            </div>
-        </a>
-        <li class="list-group-item sidebar-separator menu-collapsed"></li>
-        <a href="#" class="bg-dark list-group-item list-group-item-action">
-            <div class="d-flex w-100 justify-content-start align-items-center">
-                <span class="fa fa-question fa-fw mr-3"></span>
-                <span class="menu-collapsed">Help</span>
-            </div>
-        </a>
-        <a href="#top" data-toggle="sidebar-colapse" class="bg-dark list-group-item list-group-item-action d-flex align-items-center">
-            <div class="d-flex w-100 justify-content-start align-items-center">
-                <span id="collapse-icon" class="fa fa-2x mr-3 fa-angle-left"></span>
-                <span id="collapse-text" class="menu-collapsed">Collapse</span>
-            </div>
-        </a>
     </ul>
 </div>

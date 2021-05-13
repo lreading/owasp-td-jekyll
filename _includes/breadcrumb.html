@@ -1,0 +1,10 @@
+<!-- Graciously derived from https://stackoverflow.com/a/32004173/3033053 -->
+{% assign crumbs = page.url | remove:'/index.html' | split: '/' %}
+
+{% for crumb in crumbs offset: 1 %}
+  {% if forloop.last %}
+    {{ crumb | replace:'-',' ' | remove:'.html' | capitalize }}
+  {% else %}
+    {{ crumb | replace:'-',' ' | remove:'.html' | capitalize }} /
+  {% endif %}
+{% endfor %}

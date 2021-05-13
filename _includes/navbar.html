@@ -2,33 +2,30 @@
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="{{ '/' | relative_url }}">
         {{ site.brand }}
     </a>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-            {% for navlink in site.header_links %}
+            {%- for navlink in site.header_links -%}
             <li class="nav-item">
                 <a href="{{ navlink.url }}"
                     {% if navlink.target %} target="{{ navlink.target }}"{%- endif -%}
                     class="nav-link active">
-                        {% if navlink.fa_class %}
+                        {%- if navlink.fa_class -%}
                         <i class="{{ navlink.fa_class }} fa-lg"></i>
-                        {% endif %} {{ navlink.text }}
+                        {%- endif %} {{ navlink.text }}
                 </a>
             </li>
-            {% endfor %}
-
+            {%- endfor -%}
             
             <!-- Sidebars do not work well on smaller devices.  We want to fall back to a more traditional expanding button navigation -->
-            <!-- TODO: Build nav based on pages -->
             <li class="nav-item dropdown d-sm-block d-md-none">
                 <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Menu </a>
                 <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
-                    <a class="dropdown-item" href="#top">hjsahgjsa</a>
-                    <a class="dropdown-item" href="#top">Profile</a>
-                    <a class="dropdown-item" href="#top">Tasks</a>
-                    <a class="dropdown-item" href="#top">Etc ...</a>
+                    {%- for navPage in site.pages | where: "path" -%}
+                        <a class="dropdown-item" href="{{ navPage.url || relative_url }}">{{ navPage.title }}</a>
+                    {%- endfor -%}
                 </div>
             </li>
         </ul>

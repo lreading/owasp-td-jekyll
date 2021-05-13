@@ -2,13 +2,14 @@
     {% include head.html %}
     <body>
         {% include navbar.html %}
-        {% include sidebar.html %}
-        <div class="container-fluid">
-            {{ content }}
+        <div id="body-row" class="row">
+            {% include sidebar.html %}
+            <div class="col">
+                <div class="container-fluid mt-2">
+                    {{ content }}
+                </div>
+            </div>
+            {% include scripts.html %}
         </div>
-
-        <script src="assets/js/jquery.min.js"></script>
-        <script src="/assets/js/bootstrap.bundle.min.js"></script>
-        <script src="/assets/js/sidebar.js"></script>
     </body>
 </html>

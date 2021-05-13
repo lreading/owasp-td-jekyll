@@ -1,0 +1,14 @@
+<div class="row">
+    {%- for link in site.homeLinks -%}
+        <div class="col">
+            <div class="jumbotron">
+                <div class="text-center">
+                    <a href="{{ link.relative_url | relative_url }}">
+                    <i class="{{ link.fa_class }} fa-4x"></i>
+                    </a>
+                    <p>{{ link.description }}</p>
+                </div>
+            </div>
+        </div>
+    {%- endfor -%}
+</div>
