@@ -1,29 +1,35 @@
-<nav class="navbar navbar-dark navbar-expand-lg">
-    <!-- TODO: Make brand part of template -->
-    <a class="navbar-brand" href="#">OWASP Threat Dragon</a>
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-
-
-    <div class="collapse navbar-collapse" id="navbarToggler">
+    <a class="navbar-brand" href="#">
+        {{ site.brand }}
+    </a>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
-            <!-- TODO: Make these part of the theme template-->
+            {% for navlink in site.header_links %}
             <li class="nav-item">
-                <a href="https://threatdragon.org/" target="_blank">
-                    <i class="fa fa-flask fa-lg"></i> Try the web app
+                <a href="{{ navlink.url }}"
+                    {% if navlink.target %} target="{{ navlink.target }}"{%- endif -%}
+                    class="nav-link active">
+                        {% if navlink.fa_class %}
+                        <i class="{{ navlink.fa_class }} fa-lg"></i>
+                        {% endif %} {{ navlink.text }}
                 </a>
             </li>
-            <li class="nav-item">
-                <a href="https://github.com/OWASP/threat-dragon-desktop/releases" target="_blank">
-                    <i class="fas fa-cloud-download-alt fa-lg"></i> Download the desktop app
-                </a>
-            </li>
-            <li class="nav-item">
-                <a href="https://github.com/OWASP/threat-dragon" target="_blank">
-                    <i class="fab fa-github fa-lg"></i> Visit us on GitHub
-                </a>
+            {% endfor %}
+
+            
+            <!-- Sidebars do not work well on smaller devices.  We want to fall back to a more traditional expanding button navigation -->
+            <!-- TODO: Build nav based on pages -->
+            <li class="nav-item dropdown d-sm-block d-md-none">
+                <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Menu </a>
+                <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
+                    <a class="dropdown-item" href="#top">hjsahgjsa</a>
+                    <a class="dropdown-item" href="#top">Profile</a>
+                    <a class="dropdown-item" href="#top">Tasks</a>
+                    <a class="dropdown-item" href="#top">Etc ...</a>
+                </div>
             </li>
         </ul>
     </div>
