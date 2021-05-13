@@ -1,0 +1,10 @@
+Navbar:
+    - Make nav links variables that can be used by a theme (partials maybe?)
+    - Make brand link part of the template
+
+- Learn how Jekyll themes work
+    - https://www.siteleaf.com/blog/making-your-first-jekyll-theme-part-2/
+    - https://dev.to/supunkavinda/i-created-a-jekyll-theme-in-375-minutes-eoj
+    - https://github.com/SupunKavinda/jekyll-theme-leaf
+
+- Document theme usage

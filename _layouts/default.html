@@ -1,1 +1,22 @@
-{{ content }}
+<html>
+    <head>
+        <title>{{ page.title }}</title>
+
+        <meta charset="utf-8" />
+        <link rel="shortcut icon" href="/assets/images/favicon.ico" type="image/x-icon">
+        <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+        <link rel="stylesheet" href="/assets/css/bootstrap.css">
+        <link rel="stylesheet" href="/assets/css/style.css">
+        <link rel="stylesheet" href="/assets/css/fontawesome.min.css">
+    </head>
+    <body>
+        {% include navbar.html %}
+        <div class="container-fluid">
+            {{ content }}
+        </div>
+
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="/assets/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>
+

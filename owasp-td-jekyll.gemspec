@@ -3,12 +3,12 @@
 Gem::Specification.new do |spec|
   spec.name          = "owasp-td-jekyll"
   spec.version       = "0.1.0"
-  spec.authors       = ["Leo"]
-  spec.email         = ["leo.reading@gmail.com"]
+  spec.authors       = ["Leo Reading"]
+  spec.email         = ["leo.reading@owasp.org"]
 
-  spec.summary       = "TODO: Write a short summary, because Rubygems requires one."
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
-  spec.license       = "MIT"
+  spec.summary       = "OWASP Threat Dragon documentation theme."
+  spec.homepage      = "https://github.com/lreading/owasp-td-jekyll"
+  spec.license       = "Apache-2.0"
 
   spec.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r!^(assets|_layouts|_includes|_sass|LICENSE|README|_config\.yml)!i) }
 
