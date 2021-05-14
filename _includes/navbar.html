@@ -10,7 +10,7 @@
             {%- for navlink in site.header_links -%}
             <li class="nav-item">
                 <a href="{{ navlink.url }}"
-                    {% if navlink.target %} target="{{ navlink.target }}"{%- endif -%}
+                    {% if navlink.target %} target="{{ navlink.target }}" rel="noopener noreferrer"{%- endif -%}
                     class="nav-link active">
                         {%- if navlink.fa_class -%}
                         <i class="{{ navlink.fa_class }} fa-lg"></i>

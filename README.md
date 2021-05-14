@@ -20,6 +20,9 @@ This is a jekyll theme meant to be used as a documentation site as opposed to a 
 This theme is based on (Mike Goodwin's original Threat Dragon documentation site)[https://github.com/threatdragon/threatdragon.github.io/tree/original]
 
 
+## TODO
+- Document the theme using github pages (and this theme)
+- Document using bootstrap classes
 
 ## Installation
 
