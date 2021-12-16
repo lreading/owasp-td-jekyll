@@ -62,12 +62,12 @@ faviconUrl: /assets/images/favicon.ico
 header_links:
   - text: Try the web app
     fa_class: fa fa-flask
-    url: http://threatdragon.org
+    url: https://www.threatdragon.com/#/
 
   - text: Download the desktop app
     fa_class: fa fa-cloud-download-alt
     target: _blank
-    url: https://github.com/OWASP/threat-dragon-desktop/releases
+    url: https://github.com/OWASP/threat-dragon/releases
 
   - text: Visit us on GitHub
     fa_class: fab fa-github
