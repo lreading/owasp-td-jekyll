@@ -2,7 +2,7 @@ name: Release Gem
 
 on:
   push:
-    branches: [ "feat/release-pipeline" ]
+    branches: [ "main" ]
 
 jobs:
   build_and_deploy:
