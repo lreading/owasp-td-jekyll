@@ -1,0 +1,60 @@
+name: Release Gem
+
+on:
+  push:
+    branches: [ "feat/release-pipeline" ]
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Bump gemspec version
+        run: |
+          GEMSPEC_FILE="owasp-td-jekyll.gemspec"
+          CURRENT_VERSION=$(grep -oE "spec.version\s+=\s+'([0-9]+\.[0-9]+\.[0-9]+)" "$GEMSPEC_FILE" | sed -E "s/spec.version\s+=\s+'//")
+
+          echo "Current version: $CURRENT_VERSION"
+
+          IFS='.' read -r major minor patch <<< "$CURRENT_VERSION"
+          patch=$((patch + 1))
+          NEW_VERSION="$major.$minor.$patch"
+
+          echo "New version: $NEW_VERSION"
+
+          sed -i -E "s/spec.version\s+=\s+'$CURRENT_VERSION/spec.version     = '$NEW_VERSION/" "$GEMSPEC_FILE"
+
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+
+          git add "$GEMSPEC_FILE"
+          git commit -m "Bump gemspec version to $NEW_VERSION"
+          git tag "v$NEW_VERSION"
+          git push origin "v$NEW_VERSION"
+          git push origin HEAD
+
+      - name: Build gem
+        run: |
+          gem build owasp-td-jekyll.gemspec
+
+      - name: Push gem to RubyGems
+        env:
+          RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
+        run: |
+          ls -1 *.gem
+          gem push owasp-td-jekyll-*.gem
+
