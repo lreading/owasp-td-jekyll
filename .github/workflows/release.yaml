@@ -50,13 +50,4 @@ jobs:
         run: |
           gem build owasp-td-jekyll.gemspec
 
-      - name: Push gem to RubyGems
-        run: |
-          mkdir -p ~/.gem
-          echo -e "---\n:rubygems_api_key: $RUBYGEMS_API_KEY" > ~/.gem/credentials
-          chmod 0600 ~/.gem/credentials
-
-          ls -1 *.gem
-          gem push owasp-td-jekyll-*.gem --verbose
-        env:
-          RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
+      - uses: rubygems/release-gem@v1
