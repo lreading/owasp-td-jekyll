@@ -6,11 +6,11 @@ layout: default
         <div class="jumbotron">
             <div class="row">
                 {%- if site.logo_src -%}
-                    <div class="col text-right">
-                        <img src="{{ site.logo_src }}" />
+                    <div class="col col-md-3 text-right">
+                        <img src="{{ site.logo_src }}" style="width:100%" />
                     </div>
                 {%- endif -%}
-                <div class="col text-left">
+                <div class="col col-md-9 text-left">
                     {{ content }}
                 </div>
             </div>
