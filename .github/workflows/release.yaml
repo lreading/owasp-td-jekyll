@@ -35,7 +35,7 @@ jobs:
 
           echo "New version: $NEW_VERSION"
 
-          sed -i -E "s/spec.version\s+=\s+'$CURRENT_VERSION/spec.version     = '$NEW_VERSION/" "$GEMSPEC_FILE"
+          sed -i -E "s/(spec\.version\s*=\s*['\"])$CURRENT_VERSION(['\"])/\1$NEW_VERSION\2/" "$GEMSPEC_FILE"
 
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
