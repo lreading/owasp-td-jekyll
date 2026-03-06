@@ -2,19 +2,21 @@ name: Release Gem
 
 on:
   push:
-    branches: [ "main" ]
+    tags: [ "v*" ]
 
 jobs:
   build_and_deploy:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write
+      contents: read
       id-token: write
 
     steps:
       - name: Check out
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
@@ -26,29 +28,18 @@ jobs:
           gem install bundler
           bundle install
 
-      - name: Bump gemspec version
+      - name: Set gemspec version from tag
         run: |
           GEMSPEC_FILE="owasp-td-jekyll.gemspec"
+          TAG_VERSION="${GITHUB_REF#refs/tags/v}"
+          echo "Tag version: $TAG_VERSION"
+
           CURRENT_VERSION=$(grep -E "spec.version\s*=" "$GEMSPEC_FILE" | sed -E "s/.*['\"]([0-9]+\.[0-9]+\.[0-9]+)['\"].*/\1/")
+          echo "Gemspec version before: $CURRENT_VERSION"
 
-          echo "Current version: $CURRENT_VERSION"
+          sed -i -E "s/(spec\.version\s*=\s*['\"])$CURRENT_VERSION(['\"])/\1$TAG_VERSION\2/" "$GEMSPEC_FILE"
 
-          IFS='.' read -r major minor patch <<< "$CURRENT_VERSION"
-          patch=$((patch + 1))
-          NEW_VERSION="$major.$minor.$patch"
-
-          echo "New version: $NEW_VERSION"
-
-          sed -i -E "s/(spec\.version\s*=\s*['\"])$CURRENT_VERSION(['\"])/\1$NEW_VERSION\2/" "$GEMSPEC_FILE"
-
-          git config user.name "GitHub Actions"
-          git config user.email "actions@github.com"
-
-          git add .
-          git commit -m "Bump gemspec version to $NEW_VERSION [skip ci]"
-          git tag "v$NEW_VERSION"
-          git push origin "v$NEW_VERSION"
-          git push origin HEAD
+          echo "Gemspec version set to: $TAG_VERSION"
 
       - name: Build gem
         run: |
