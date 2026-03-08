@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "owasp-td-jekyll"
-  spec.version       = "1.0.1"
+  spec.version       = "2.0.0"
   spec.authors       = ["Leo Reading"]
   spec.email         = ["leo.reading@owasp.org"]
 
@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/lreading/owasp-td-jekyll"
   spec.license       = "Apache-2.0"
 
-  spec.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r!^(assets|_layouts|_includes|_sass|LICENSE|README|_config\.yml)!i) }
+  spec.files         = `git ls-files -z`.split("\x0").select { |f| f.match(%r!^(assets|_layouts|_includes|LICENSE|README|_config\.ya?ml)!i) }
 
   spec.add_runtime_dependency "jekyll", "~> 4.4"
 end
