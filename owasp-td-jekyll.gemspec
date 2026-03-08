@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = "owasp-td-jekyll"
-  spec.version       = "1.0.1"
+  spec.version       = "2.0.0"
   spec.authors       = ["Leo Reading"]
   spec.email         = ["leo.reading@owasp.org"]
 
