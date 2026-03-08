@@ -85,6 +85,16 @@
   --bs-border-color-translucent: rgba(245, 241, 234, 0.12);
 }
 
+.home-logo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+:root[data-theme="dark"] .home-logo {
+  filter: invert(76%) grayscale(100%) brightness(92%);
+}
+
 a {
   text-decoration: none;
 }
