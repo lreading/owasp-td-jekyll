@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <a class="navbar-brand" href="{{ '/' | relative_url }}">
         {{ site.brand }}
     </a>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ms-auto">
             {%- for navlink in site.header_links -%}
             <li class="nav-item">
                 <a href="{{ navlink.url }}"
@@ -21,7 +21,7 @@
             
             <!-- Sidebars do not work well on smaller devices.  We want to fall back to a more traditional expanding button navigation -->
             <li class="nav-item dropdown d-sm-block d-md-none">
-                <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Menu </a>
+                <a class="nav-link dropdown-toggle" href="#" id="smallerscreenmenu" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> Menu </a>
                 <div class="dropdown-menu" aria-labelledby="smallerscreenmenu">
                     {%- for navPage in site.pages | where: "path" -%}
                         <a class="dropdown-item" href="{{ navPage.url || relative_url }}">{{ navPage.title }}</a>

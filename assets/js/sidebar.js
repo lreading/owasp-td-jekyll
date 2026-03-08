@@ -1,25 +1,40 @@
-// Hide submenus
-$('#body-row .collapse').collapse('hide'); 
-
-// Collapse click
-$('[data-toggle=sidebar-colapse]').click(function() {
-    SidebarCollapse();
+// Hide submenus on initial load.
+document.querySelectorAll('#body-row .collapse').forEach((element) => {
+    bootstrap.Collapse.getOrCreateInstance(element, { toggle: false }).hide();
 });
 
-function SidebarCollapse () {
-    $('.menu-collapsed').toggleClass('d-none');
-    $('.sidebar-submenu').toggleClass('d-none');
-    $('.submenu-icon').toggleClass('d-none');
-    $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
-    
-    // Treating d-flex/d-none on separators with title
-    var SeparatorTitle = $('.sidebar-separator-title');
-    if ( SeparatorTitle.hasClass('d-flex') ) {
-        SeparatorTitle.removeClass('d-flex');
-    } else {
-        SeparatorTitle.addClass('d-flex');
+// Collapse click
+document.querySelectorAll('[data-sidebar-toggle="collapse"]').forEach((element) => {
+    element.addEventListener('click', (event) => {
+        event.preventDefault();
+        SidebarCollapse();
+    });
+});
+
+function toggleClassForEach(selector, className) {
+    document.querySelectorAll(selector).forEach((element) => {
+        element.classList.toggle(className);
+    });
+}
+
+function SidebarCollapse() {
+    toggleClassForEach('.menu-collapsed', 'd-none');
+    toggleClassForEach('.sidebar-submenu', 'd-none');
+    toggleClassForEach('.submenu-icon', 'd-none');
+
+    const sidebarContainer = document.getElementById('sidebar-container');
+    if (sidebarContainer) {
+        sidebarContainer.classList.toggle('sidebar-expanded');
+        sidebarContainer.classList.toggle('sidebar-collapsed');
     }
-    
-    // Collapse/Expand icon
-    $('#collapse-icon').toggleClass('fa-angle-left fa-angle-right');
+
+    // Treat d-flex/d-none on separators with title.
+    toggleClassForEach('.sidebar-separator-title', 'd-flex');
+
+    // Collapse/Expand icon.
+    const collapseIcon = document.getElementById('collapse-icon');
+    if (collapseIcon) {
+        collapseIcon.classList.toggle('fa-angle-left');
+        collapseIcon.classList.toggle('fa-angle-right');
+    }
 }
