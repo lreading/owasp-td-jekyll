@@ -4,3 +4,6 @@
 .sass-cache
 _site
 vendor
+!assets/css/vendor/
+!assets/css/vendor/rouge-friendly.css
+!assets/css/vendor/rouge-friendly.UNLICENSE.txt

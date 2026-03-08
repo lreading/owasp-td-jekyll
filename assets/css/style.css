@@ -2,6 +2,11 @@
   --td-orange: #e95420;
   --td-dark-orange: #97310e;
   --td-gray: #aea79f;
+  --td-light-gray: #f1f3f5;
+  --td-code-block-bg: #f0f0f0;
+  --td-code-bg: #ece7e1;
+  --td-code-border: #d3cbc1;
+  --td-inline-code-color: #b02267;
   --td-white: #ffffff;
   --td-black: #333333;
   --bs-primary: var(--td-orange);
@@ -196,6 +201,42 @@ body {
 
 .btn-secondary {
   color: var(--td-white) !important;
+}
+
+/* Improve readability of fenced code blocks and inline code. */
+.highlighter-rouge .highlight,
+pre.highlight {
+  background-color: var(--td-code-block-bg);
+  border: 1px solid var(--td-code-border);
+  border-radius: var(--bs-border-radius);
+}
+
+.highlighter-rouge .highlight pre,
+pre.highlight {
+  margin: 0;
+  padding: 1rem;
+  overflow-x: auto;
+  color: var(--td-black);
+  background-color: transparent;
+}
+
+.highlighter-rouge .highlight pre code,
+pre.highlight code {
+  color: var(--td-black);
+  background-color: transparent;
+}
+
+p code,
+li code,
+td code,
+th code {
+  padding: 0.1rem 0.3rem;
+  color: var(--td-inline-code-color);
+  background-color: var(--td-code-bg);
+  font-size: 0.95em;
+  font-weight: 500;
+  line-height: 1.3;
+  border-radius: 0.2rem;
 }
 
 /* Bootstrap 4 compatibility helpers used by site content/layouts. */

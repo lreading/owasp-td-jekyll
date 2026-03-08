@@ -23,7 +23,6 @@ I've updated the styles so that tables will always inherit from Bootstrap's `.ta
 Code blocks need to be readable.  While I'm not interested in adding a dependency for code highlighting, the code blocks should at least be distinguishable from regular text.
 
 ```javascript
-
 const foo = 'bar';
 
 const getFoo = () => {
@@ -33,4 +32,15 @@ const getFoo = () => {
 console.warn('heyyo');
 ```
 
+---
 
+
+```python
+# The main code
+def main():
+    print("Hello, world!")
+
+if __name__ == "__main__":
+    main()
+
+```
