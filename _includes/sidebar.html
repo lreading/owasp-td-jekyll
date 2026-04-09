@@ -18,7 +18,7 @@
                     class="bg-dark list-group-item list-group-item-action {% if activeCount > 0 %} active{%- endif -%}">
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span class="{{ group.fa_class }} fa-fw me-3"></span>
-                            <span class="menu-collapsed">{{ group.name }}</span>
+                            <span class="menu-collapsed sidebar-link-label">{{ group.name }}</span>
                         </div>
                     </a>
                 {%- else -%}
@@ -28,7 +28,7 @@
                         class="bg-dark list-group-item list-group-item-action grou-nav flex-column align-items-start {% if activeCount > 0 %} active{%- endif -%}">
                         <div class="d-flex w-100 justify-content-start align-items-center">
                             <span class="{{ group.fa_class }} fa-fw me-3"></span>
-                            <span class="menu-collapsed">{{ group.name }}</span>
+                            <span class="menu-collapsed sidebar-link-label">{{ group.name }}</span>
                             <span class="submenu-icon ms-auto submenu-expand fa fa-caret-down"></span>
                             <span class="submenu-icon ms-auto submenu-collapse fa fa-caret-up"></span>
                         </div>
@@ -37,7 +37,7 @@
                         {%- for navPage in pages -%}
                             <a href="{{ navPage.url | relative_url }}"
                                 class="list-group-item list-group-item-action bg-dark text-white {% if page.url == navPage.url %} active{%- endif -%}">
-                                <span class="menu-collapsed">{{ navPage.title }}</span>
+                                <span class="menu-collapsed sidebar-link-label">{{ navPage.title }}</span>
                             </a>
                         {%- endfor -%}
                     </div>
