@@ -3,8 +3,8 @@
         <div class="col">
             <div class="jumbotron">
                 <div class="text-center">
-                    <a href="{{ link.relative_url | relative_url }}">
-                    <i class="{{ link.fa_class }} fa-4x"></i>
+                    <a href="{{ link.relative_url | relative_url }}" aria-label="{{ link.description | default: link.relative_url }}">
+                    <i class="{{ link.fa_class }} fa-4x" aria-hidden="true"></i>
                     </a>
                     <p class="mt-4">{{ link.description }}</p>
                 </div>

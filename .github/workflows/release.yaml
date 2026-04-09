@@ -18,6 +18,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Set up Node.js
+        uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
+        with:
+          node-version: '22'
+          cache: npm
+
       - name: Set up Ruby
         uses: ruby/setup-ruby@e65c17d16e57e481586a6a5a0282698790062f92 # v1.300.0
         with:
@@ -27,6 +33,12 @@ jobs:
         run: |
           gem install bundler
           bundle install
+
+      - name: Install accessibility tooling
+        run: npm ci
+
+      - name: Accessibility audit
+        run: npm run check:accessibility
 
       - name: Set gemspec version from tag
         run: |

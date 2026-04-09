@@ -14,6 +14,7 @@
                 
                 <!-- TODO: Catpure groupActive and linkActive to apply classes and data props -->
                 {%- if pages.size == 1 -%}
+                <li class="sidebar-nav-item">
                     <a href="{{ pages | map: 'url' | first | relative_url }}"
                     class="bg-dark list-group-item list-group-item-action {% if activeCount > 0 %} active{%- endif -%}"
                     data-sidebar-item="true"
@@ -21,30 +22,35 @@
                     data-bs-placement="right"
                     title="{{ group.name }}"
                     aria-label="{{ group.name }}">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="{{ group.fa_class }} fa-fw me-3"></span>
+                        <span class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="{{ group.fa_class }} fa-fw me-3" aria-hidden="true"></span>
                             <span class="menu-collapsed sidebar-link-label">{{ group.name }}</span>
-                        </div>
+                        </span>
                     </a>
+                </li>
                 {%- else -%}
-                    <a href="#{{ submenuId }}"
+                <li class="sidebar-nav-item">
+                    <button
+                        type="button"
                         data-bs-toggle="collapse"
+                        data-bs-target="#{{ submenuId }}"
+                        aria-controls="{{ submenuId }}"
                         aria-expanded="{%- if activeCount > 0 -%}true{%- else -%}false{%- endif -%}"
-                        class="bg-dark list-group-item list-group-item-action grou-nav flex-column align-items-start {% if activeCount > 0 %} active{%- endif -%}"
+                        class="bg-dark list-group-item list-group-item-action grou-nav flex-column align-items-start w-100 {% if activeCount > 0 %} active{%- endif -%}"
                         data-sidebar-item="true"
                         data-sidebar-submenu="{{ submenuId }}"
                         data-bs-toggle-tooltip="tooltip"
                         data-bs-placement="right"
                         title="{{ group.name }}"
                         aria-label="{{ group.name }}">
-                        <div class="d-flex w-100 justify-content-start align-items-center">
-                            <span class="{{ group.fa_class }} fa-fw me-3"></span>
+                        <span class="d-flex w-100 justify-content-start align-items-center">
+                            <span class="{{ group.fa_class }} fa-fw me-3" aria-hidden="true"></span>
                             <span class="menu-collapsed sidebar-link-label">{{ group.name }}</span>
-                            <span class="submenu-icon ms-auto submenu-expand fa fa-caret-down"></span>
-                            <span class="submenu-icon ms-auto submenu-collapse fa fa-caret-up"></span>
-                        </div>
-                    </a>
-                    <div id='{{ submenuId }}' class="{%- if activeCount == 0 -%}collapse{%- endif %} sidebar-submenu">
+                            <span class="submenu-icon ms-auto submenu-expand fa fa-caret-down" aria-hidden="true"></span>
+                            <span class="submenu-icon ms-auto submenu-collapse fa fa-caret-up" aria-hidden="true"></span>
+                        </span>
+                    </button>
+                    <div id="{{ submenuId }}" class="{%- if activeCount == 0 -%}collapse{%- endif %} sidebar-submenu">
                         {%- for navPage in pages -%}
                             <a href="{{ navPage.url | relative_url }}"
                                 class="list-group-item list-group-item-action bg-dark text-white {% if page.url == navPage.url %} active{%- endif -%}">
@@ -52,15 +58,18 @@
                             </a>
                         {%- endfor -%}
                     </div>
+                </li>
                 {%- endif -%}
             {%- endfor -%}
         {%- endfor -%}
         
-            <a href="#top" data-sidebar-toggle="collapse" class="bg-dark list-group-item list-group-item-action d-flex align-items-center" data-bs-toggle-tooltip="tooltip" data-bs-placement="right" title="Toggle sidebar" aria-label="Toggle sidebar">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span id="collapse-icon" class="fa fa-angle-left fa-2x me-3"></span>
+            <li class="sidebar-nav-item">
+            <button type="button" data-sidebar-toggle="collapse" class="bg-dark list-group-item list-group-item-action d-flex align-items-center w-100" data-bs-toggle-tooltip="tooltip" data-bs-placement="right" title="Toggle sidebar" aria-label="Toggle sidebar">
+                <span class="d-flex w-100 justify-content-start align-items-center">
+                    <span id="collapse-icon" class="fa fa-angle-left fa-2x me-3" aria-hidden="true"></span>
                     <span id="collapse-text" class="menu-collapsed">Collapse</span>
-                </div>
-            </a>
+                </span>
+            </button>
+            </li>
     </ul>
 </div>

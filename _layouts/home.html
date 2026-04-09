@@ -7,7 +7,7 @@ layout: default
             <div class="row">
                 {%- if site.logo_src -%}
                     <div class="col col-md-3 text-end">
-                        <img class="home-logo" src="{{ site.logo_src }}" style="width:100%" />
+                        <img class="home-logo" src="{{ site.logo_src }}" alt="{{ site.brand | default: site.title | default: 'Site logo' }}">
                     </div>
                 {%- endif -%}
                 <div class="col col-md-9 text-start">

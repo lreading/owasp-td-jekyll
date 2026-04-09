@@ -1,0 +1,11 @@
+{
+  "name": "owasp-td-jekyll-dev",
+  "private": true,
+  "scripts": {
+    "build:site": "bundle exec jekyll build",
+    "check:accessibility": "npm run build:site && html-validate --ext=html _site"
+  },
+  "devDependencies": {
+    "html-validate": "^10.11.3"
+  }
+}
