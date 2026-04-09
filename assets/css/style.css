@@ -226,7 +226,8 @@ a:hover {
 
 /* Menu item */
 #sidebar-container .list-group a {
-  height: 50px;
+  min-height: 50px;
+  height: auto;
   color: var(--td-white);
 }
 
@@ -251,12 +252,30 @@ a:hover {
 
 /* Submenu item */
 #sidebar-container .list-group .sidebar-submenu a {
-  height: 45px;
+  min-height: 45px;
+  height: auto;
   padding-left: 30px;
 }
 
 .sidebar-submenu {
   font-size: 0.9rem;
+}
+
+#sidebar-container .sidebar-link-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.35;
+}
+
+#sidebar-container .sidebar-submenu .sidebar-link-label {
+  display: block;
+}
+
+#sidebar-container .submenu-icon {
+  flex-shrink: 0;
+  align-self: center;
 }
 
 /* Separators */
