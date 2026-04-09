@@ -59,17 +59,30 @@ theme: owasp-td-jekyll
 brand: OWASP Threat Dragon
 faviconUrl: /assets/images/favicon.ico
 
+navbar:
+  icon_links: true
+
+search:
+  tooltip: Search documentation
+
+theme_toggle:
+  dark_tooltip: Switch to dark mode
+  light_tooltip: Switch to light mode
+
 header_links:
   - text: Try the web app
+    tooltip: Try the web app
     fa_class: fa fa-flask
     url: https://www.threatdragon.com/#/
 
   - text: Download the desktop app
+    tooltip: Download the desktop app
     fa_class: fa fa-cloud-download-alt
     target: _blank
     url: https://github.com/OWASP/threat-dragon/releases
 
   - text: Visit us on GitHub
+    tooltip: Visit us on GitHub
     fa_class: fab fa-github
     target: _blank
     url: https://github.com/OWASP/threat-dragon
@@ -106,11 +119,17 @@ homeLinks:
 |---|---|---|
 |`brand`|string|The brand name to be used as the home link in the navbar|
 |`faviconUrl`|string|The relative path to the favicon|
+|`navbar.icon_links`|boolean|Render the search, header links, and theme toggle as icon-only buttons with tooltips. Defaults to `false`|
 |`header_links`|array<object>|Additional links to be added to the navbar (top, not sidebar)
 |`header_links[0].text`|string|The text of the link|
+|`header_links[0].tooltip`|string|Optional tooltip/accessible label for icon-only navbar links. Defaults to `text`|
 |`header_links[0].fa_class`|string|The font-awesome class to use for the dropdown.  Use the full class, eg `fab fa-github`|
 |`header_links[0].url`|string|The url to be used as the href preoprty on the anchor.|
 |`header_links[0].target`|string|The `target` property for the anchor. Optional|
+|`search.placeholder`|string|Optional placeholder text for the navbar search field. Defaults to `Search docs`|
+|`search.tooltip`|string|Tooltip/accessible label for the navbar search icon when `navbar.icon_links` is enabled. Defaults to `Search documentation`|
+|`theme_toggle.dark_tooltip`|string|Tooltip/accessible label shown when the next action is switching to dark mode. Defaults to `Switch to dark mode`|
+|`theme_toggle.light_tooltip`|string|Tooltip/accessible label shown when the next action is switching to light mode. Defaults to `Switch to light mode`|
 
 ### Sidebar
 The sidebar is used as the primary navigation for the site, unless it is on a smaller device.  The navigation is built from a combination of properties provided in your `_config.yaml` as well as having the `group` and `nav_order` properties set in your (front matter)[https://jekyllrb.com/docs/front-matter/]
@@ -196,6 +215,14 @@ Some more text goes here
 ____
 ## Breadcrumbs
 Breadcrumbs rely on the file structure of your documentation to be as follows: `category/group/page.md`.  Please see the top of the readme for a full example tree.
+
+## Search
+The theme includes a built-in documentation search field in the top navigation. It uses a Jekyll-generated JSON index at `/assets/search.json` and a small native JavaScript controller, so there are no additional third-party frontend dependencies to install or update.
+
+Pages are indexed automatically when they have a `title`. To exclude a page from search, set this in its front matter:
+```
+search: false
+```
 
 ## Contributing
 
