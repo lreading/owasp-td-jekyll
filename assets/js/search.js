@@ -157,7 +157,6 @@
     resultLinks.forEach((link, index) => {
       const isActive = index === normalizedIndex;
       link.classList.toggle("is-active", isActive);
-      link.setAttribute("aria-selected", isActive ? "true" : "false");
     });
 
     activeResultIndex = normalizedIndex;
@@ -222,7 +221,7 @@
     searchResults.hidden = false;
     searchResults.innerHTML = results.map((result) => {
       return `
-        <a class="td-search-result" href="${escapeHtml(result.url)}" role="option" aria-selected="false">
+        <a class="td-search-result" href="${escapeHtml(result.url)}">
           <span class="td-search-result-path">${escapeHtml(result.pathLabel)}</span>
           <span class="td-search-result-title">${escapeHtml(result.titleLabel)}</span>
           ${result.snippet ? `<span class="td-search-result-snippet">${escapeHtml(result.snippet)}</span>` : ""}

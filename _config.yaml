@@ -1,5 +1,14 @@
 title: OWASP Threat Dragon
 
+exclude:
+  - README.md
+  - RELEASE.md
+  - Rakefile
+  - package.json
+  - package-lock.json
+  - owasp-td-jekyll.gemspec
+  - "*.gem"
+
 brand: OWASP Threat Dragon
 faviconUrl: /assets/images/favicon.ico
 

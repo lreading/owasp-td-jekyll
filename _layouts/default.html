@@ -1,16 +1,18 @@
-<html data-baseurl="{{ '' | relative_url }}">
+<!DOCTYPE html>
+<html lang="{{ site.lang | default: 'en' }}" data-baseurl="{{ '' | relative_url }}">
     {% include head.html %}
     <body>
+        <a class="visually-hidden-focusable" href="#main-content">Skip to main content</a>
         {% include navbar.html %}
         <div id="body-row" class="row">
             {% include sidebar.html %}
-            <div class="col">
+            <main id="main-content" class="col">
                 <div class="container-fluid mt-2">
                     {{ content }}
                 </div>
-            </div>
+            </main>
         </div>
-        <div class="modal fade td-search-modal" id="tdSearchModal" tabindex="-1" aria-labelledby="tdSearchModalLabel" aria-hidden="true" data-search>
+        <div class="modal fade td-search-modal" id="tdSearchModal" tabindex="-1" aria-labelledby="tdSearchModalLabel" data-search>
             <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -38,9 +40,7 @@
                             id="td-doc-search-results"
                             class="td-search-results"
                             data-search-results
-                            hidden
-                            role="listbox"
-                            aria-label="Search results">
+                            hidden>
                         </div>
                     </div>
                 </div>

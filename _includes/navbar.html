@@ -22,17 +22,16 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ms-auto d-none d-md-flex">
             <li class="nav-item">
-                <a
+                <button
                     class="nav-link active"
-                    href="#"
-                    role="button"
+                    type="button"
                     data-bs-toggle="modal"
                     data-bs-target="#tdSearchModal"
                     aria-label="{{ search_label }}"
                     {% if search_tooltip %}title="{{ search_tooltip }}" data-bs-toggle-tooltip="tooltip" data-bs-placement="bottom"{% endif %}>
                     <i class="fas fa-search fa-lg" aria-hidden="true"></i>
                     {%- if search_text and search_text != '' -%} {{ search_text }}{%- else -%}<span class="visually-hidden">Search</span>{%- endif -%}
-                </a>
+                </button>
             </li>
             {%- for navlink in site.header_links -%}
             <li class="nav-item">
@@ -42,7 +41,7 @@
                     {% if navlink.tooltip or navlink.text %}aria-label="{{ navlink.tooltip | default: navlink.text }}"{% endif %}
                     {% if navlink.tooltip %}title="{{ navlink.tooltip }}" data-bs-toggle-tooltip="tooltip" data-bs-placement="bottom"{% endif %}>
                     {%- if navlink.fa_class -%}
-                    <i class="{{ navlink.fa_class }} fa-lg"></i>
+                    <i class="{{ navlink.fa_class }} fa-lg" aria-hidden="true"></i>
                     {%- endif -%}
                     {%- if navlink.text and navlink.text != '' -%} {{ navlink.text }}{%- endif -%}
                 </a>

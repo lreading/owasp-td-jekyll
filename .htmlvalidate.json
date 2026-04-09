@@ -1,0 +1,16 @@
+{
+  "extends": [
+    "html-validate:recommended",
+    "html-validate:document"
+  ],
+  "rules": {
+    "no-trailing-whitespace": "off",
+    "require-sri": [
+      "error",
+      {
+        "target": "crossorigin"
+      }
+    ],
+    "void-style": "off"
+  }
+}

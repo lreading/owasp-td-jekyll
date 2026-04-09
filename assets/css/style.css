@@ -482,6 +482,12 @@ a:hover {
   border-color: rgba(51, 51, 51, 0.125);
 }
 
+.sidebar-nav-item {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 #sidebar-container .list-group-item.bg-dark {
   border-width: 0 1px 1px;
   border-style: solid;
@@ -494,6 +500,11 @@ a:hover {
   background-color: #1d2124 !important;
   color: var(--td-white);
   text-decoration: none;
+}
+
+#sidebar-container button.list-group-item {
+  text-align: left;
+  border-radius: 0;
 }
 
 /* Submenu item */
