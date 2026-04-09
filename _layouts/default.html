@@ -1,4 +1,4 @@
-<html>
+<html data-baseurl="{{ '' | relative_url }}">
     {% include head.html %}
     <body>
         {% include navbar.html %}
@@ -9,7 +9,43 @@
                     {{ content }}
                 </div>
             </div>
-            {% include scripts.html %}
         </div>
+        <div class="modal fade td-search-modal" id="tdSearchModal" tabindex="-1" aria-labelledby="tdSearchModalLabel" aria-hidden="true" data-search>
+            <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h2 class="modal-title fs-5" id="tdSearchModalLabel">Search documentation</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <label class="visually-hidden" for="td-doc-search">Search documentation</label>
+                        <div class="td-search-input-wrap">
+                            <i class="fas fa-search td-search-input-icon" aria-hidden="true"></i>
+                            <input
+                                id="td-doc-search"
+                                class="form-control td-search-input"
+                                type="search"
+                                placeholder="{{ site.search.placeholder | default: 'Search docs' }}"
+                                autocomplete="off"
+                                spellcheck="false"
+                                data-search-input
+                                aria-describedby="td-doc-search-help"
+                                aria-expanded="false"
+                                aria-controls="td-doc-search-results">
+                        </div>
+                        <div id="td-doc-search-help" class="form-text">Type at least two characters to search documentation pages.</div>
+                        <div
+                            id="td-doc-search-results"
+                            class="td-search-results"
+                            data-search-results
+                            hidden
+                            role="listbox"
+                            aria-label="Search results">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% include scripts.html %}
     </body>
 </html>

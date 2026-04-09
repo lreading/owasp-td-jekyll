@@ -3,17 +3,27 @@ title: OWASP Threat Dragon
 brand: OWASP Threat Dragon
 faviconUrl: /assets/images/favicon.ico
 
+search:
+  text:
+  tooltip: Search documentation
+
+theme_toggle:
+  text:
+  dark_tooltip: Switch to dark mode
+  light_tooltip: Switch to light mode
+
 header_links:
-  - text: Try the web app
+  - tooltip: Try the web app
+    text: 
     fa_class: fa fa-flask
     url: https://www.threatdragon.com/#/
 
-  - text: Download the desktop app
+  - tooltip: Download the desktop app
     fa_class: fa fa-cloud-download-alt
     target: _blank
     url: https://github.com/OWASP/threat-dragon/releases
 
-  - text: Visit us on GitHub
+  - tooltip: Visit us on GitHub
     fa_class: fab fa-github
     target: _blank
     url: https://github.com/OWASP/threat-dragon

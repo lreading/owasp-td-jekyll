@@ -1,4 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
+    {%- assign search_text = site.search.text -%}
+    {%- assign search_tooltip = site.search.tooltip -%}
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -7,14 +9,30 @@
     </a>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a
+                    class="nav-link active"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="modal"
+                    data-bs-target="#tdSearchModal"
+                    aria-label="{{ search_tooltip | default: search_text | default: 'Search documentation' }}"
+                    {% if search_tooltip %}title="{{ search_tooltip }}" data-bs-toggle-tooltip="tooltip" data-bs-placement="bottom"{% endif %}>
+                    <i class="fas fa-search fa-lg" aria-hidden="true"></i>
+                    {%- if search_text and search_text != '' -%} {{ search_text }}{%- else -%}<span class="visually-hidden">Search</span>{%- endif -%}
+                </a>
+            </li>
             {%- for navlink in site.header_links -%}
             <li class="nav-item">
                 <a href="{{ navlink.url }}"
                     {% if navlink.target %} target="{{ navlink.target }}" rel="noopener noreferrer"{%- endif -%}
-                    class="nav-link active">
+                    class="nav-link active"
+                    {% if navlink.tooltip or navlink.text %}aria-label="{{ navlink.tooltip | default: navlink.text }}"{% endif %}
+                    {% if navlink.tooltip %}title="{{ navlink.tooltip }}" data-bs-toggle-tooltip="tooltip" data-bs-placement="bottom"{% endif %}>
                         {%- if navlink.fa_class -%}
                         <i class="{{ navlink.fa_class }} fa-lg"></i>
-                        {%- endif %} {{ navlink.text }}
+                        {%- endif -%}
+                        {%- if navlink.text and navlink.text != '' -%} {{ navlink.text }}{%- endif -%}
                 </a>
             </li>
             {%- endfor -%}
@@ -29,9 +47,20 @@
                 </div>
             </li>
             <li class="nav-item">
-                <button class="nav-link theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode" title="Switch to dark mode">
+                {%- assign theme_toggle_text = site.theme_toggle.text -%}
+                <button
+                    class="nav-link theme-toggle"
+                    type="button"
+                    data-theme-toggle
+                    data-theme-tooltip-dark="{{ site.theme_toggle.dark_tooltip | default: 'Switch to dark mode' }}"
+                    data-theme-tooltip-light="{{ site.theme_toggle.light_tooltip | default: 'Switch to light mode' }}"
+                    aria-label="Switch to dark mode"
+                    title="Switch to dark mode"
+                    {% if site.theme_toggle.dark_tooltip or site.theme_toggle.light_tooltip %}data-bs-toggle-tooltip="tooltip" data-bs-placement="bottom"{% endif %}>
                     <i class="fas fa-moon theme-toggle-icon" aria-hidden="true"></i>
-                    <span class="theme-toggle-text" data-theme-toggle-text>Dark mode</span>
+                    {%- if theme_toggle_text and theme_toggle_text != '' -%}
+                    <span class="theme-toggle-text">{{ theme_toggle_text }}</span>
+                    {%- endif -%}
                     <span class="visually-hidden" data-theme-toggle-label>Switch to dark mode</span>
                 </button>
             </li>
