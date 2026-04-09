@@ -99,13 +99,16 @@
                     <a href="{{ navlink.url }}"
                         {% if navlink.target %} target="{{ navlink.target }}" rel="noopener noreferrer"{% endif %}
                         class="td-mobile-menu-link td-mobile-menu-sublink"
-                        {% if navlink.tooltip or navlink.text %}aria-label="{{ navlink.tooltip | default: navlink.text }}"{% endif %}>
+                        aria-label="{{ navlink.tooltip | default: navlink.text | default: navlink.url }}{% if navlink.target %} (opens in new tab){% endif %}">
                         <span class="td-mobile-menu-icon">
                             {%- if navlink.fa_class -%}
                             <i class="{{ navlink.fa_class }}" aria-hidden="true"></i>
                             {%- endif -%}
                         </span>
                         <span class="td-mobile-menu-text">{{ navlink.text | default: navlink.tooltip | default: navlink.url }}</span>
+                        <span class="td-mobile-menu-meta" aria-hidden="true">
+                            <i class="fas fa-external-link-alt"></i>
+                        </span>
                     </a>
                     {%- endfor -%}
                 </div>

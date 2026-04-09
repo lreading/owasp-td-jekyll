@@ -291,6 +291,11 @@ a:hover {
   transition: transform 0.2s ease;
 }
 
+.td-mobile-menu-meta {
+  flex-shrink: 0;
+  color: var(--td-mobile-menu-muted-color);
+}
+
 .td-mobile-menu-toggle[aria-expanded="true"] .td-mobile-menu-caret {
   transform: rotate(180deg);
 }
