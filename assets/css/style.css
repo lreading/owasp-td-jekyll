@@ -192,13 +192,6 @@ a:hover {
   line-height: 1;
 }
 
-.navbar-icon-link {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 2.5rem;
-}
-
 .td-search-modal .modal-content {
   background-color: var(--td-surface-bg);
   color: var(--bs-body-color);

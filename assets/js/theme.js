@@ -30,14 +30,11 @@ function applyTheme(theme) {
 function updateThemeToggle(theme) {
     document.querySelectorAll('[data-theme-toggle]').forEach((toggleButton) => {
         const nextTheme = theme === DARK_THEME ? LIGHT_THEME : DARK_THEME;
-        const nextThemeLabel = nextTheme === DARK_THEME ? 'dark' : 'light';
-        const nextThemeText = nextTheme === DARK_THEME ? 'Dark mode' : 'Light mode';
         const nextThemeTooltip = nextTheme === DARK_THEME
             ? (toggleButton.getAttribute('data-theme-tooltip-dark') || 'Switch to dark mode')
             : (toggleButton.getAttribute('data-theme-tooltip-light') || 'Switch to light mode');
         const iconElement = toggleButton.querySelector('.theme-toggle-icon');
         const labelElement = toggleButton.querySelector('[data-theme-toggle-label]');
-        const textElement = toggleButton.querySelector('[data-theme-toggle-text]');
         const tooltipInstance = window.bootstrap && window.bootstrap.Tooltip
             ? window.bootstrap.Tooltip.getInstance(toggleButton)
             : null;
@@ -48,10 +45,6 @@ function updateThemeToggle(theme) {
 
         if (labelElement) {
             labelElement.textContent = nextThemeTooltip;
-        }
-
-        if (textElement) {
-            textElement.textContent = nextThemeText;
         }
 
         if (iconElement) {
