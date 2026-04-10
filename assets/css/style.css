@@ -564,12 +564,12 @@ a:hover {
   display: none;
 }
 
-#sidebar-container .list-group-item.active {
-  background-color: var(--td-orange) !important;
+#sidebar-container .sidebar-group-link.active {
+  background-color: var(--td-dark-orange) !important;
 }
 
-#sidebar-container .grou-nav.active {
-  background-color: var(--td-dark-orange) !important;
+#sidebar-container .sidebar-page-link.active {
+  background-color: var(--td-orange) !important;
 }
 
 .breadcrumb {
