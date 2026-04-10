@@ -16,7 +16,7 @@
                 {%- if pages.size == 1 -%}
                 <li class="sidebar-nav-item">
                     <a href="{{ pages | map: 'url' | first | relative_url }}"
-                    class="bg-dark list-group-item list-group-item-action {% if activeCount > 0 %} active{%- endif -%}"
+                    class="bg-dark list-group-item list-group-item-action sidebar-group-link {% if activeCount > 0 %} active{%- endif -%}"
                     data-sidebar-item="true"
                     data-bs-toggle-tooltip="tooltip"
                     data-bs-placement="right"
@@ -36,7 +36,7 @@
                         data-bs-target="#{{ submenuId }}"
                         aria-controls="{{ submenuId }}"
                         aria-expanded="{%- if activeCount > 0 -%}true{%- else -%}false{%- endif -%}"
-                        class="bg-dark list-group-item list-group-item-action grou-nav flex-column align-items-start w-100 {% if activeCount > 0 %} active{%- endif -%}"
+                        class="bg-dark list-group-item list-group-item-action sidebar-group-link flex-column align-items-start w-100 {% if activeCount > 0 %} active{%- endif -%}"
                         data-sidebar-item="true"
                         data-sidebar-submenu="{{ submenuId }}"
                         data-bs-toggle-tooltip="tooltip"
@@ -53,7 +53,7 @@
                     <div id="{{ submenuId }}" class="{%- if activeCount == 0 -%}collapse{%- endif %} sidebar-submenu">
                         {%- for navPage in pages -%}
                             <a href="{{ navPage.url | relative_url }}"
-                                class="list-group-item list-group-item-action bg-dark text-white {% if page.url == navPage.url %} active{%- endif -%}">
+                                class="list-group-item list-group-item-action bg-dark text-white sidebar-page-link {% if page.url == navPage.url %} active{%- endif -%}">
                                 <span class="menu-collapsed sidebar-link-label">{{ navPage.title }}</span>
                             </a>
                         {%- endfor -%}

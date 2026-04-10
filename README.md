@@ -240,6 +240,8 @@ That command rebuilds the Jekyll site and validates the generated HTML in `_site
 
 Your theme is setup just like a normal Jekyll site! To test your theme, run `bundle exec jekyll serve` and open your browser at `http://localhost:4000`. This starts a Jekyll server using your theme. Add pages, documents, data, etc. like normal to test your theme's contents. As you make modifications to your theme and to your content, your site will regenerate and you should see the changes in the browser after a refresh, just like normal.
 
+The repo also includes a `Development Fixtures` sidebar category in `_config.yaml` plus example pages under `testing/` to exercise both a single-page group and a multi-page dropdown group during local verification.
+
 When your theme is released, only the files in `_layouts`, `_includes`, and `assets` tracked with Git will be bundled.
 To add a custom directory to your theme-gem, please edit the regexp in `owasp-td-jekyll.gemspec` accordingly.
 
